@@ -1,6 +1,7 @@
 import { useState } from "react";
 import api from "../services/api";
 import { useNavigate, Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -21,7 +22,11 @@ const Register = () => {
 
       // IMPORTANT NOTE:
       // show success message
-      alert("Registered successfully. Check email for verification.");
+      Swal.fire({
+        icon: "success",
+        title: "Registration Successful",
+        text: "Please check your email for verification."
+      });
 
       navigate("/login");
     }catch (err: any) {
@@ -29,7 +34,13 @@ const Register = () => {
   console.log("RESPONSE:", err.response);
   console.log("DATA:", err.response?.data);
 
-  alert(JSON.stringify(err.response?.data) || err.message);
+  Swal.fire({
+    icon: "error",
+    title: "Registration Failed",
+    text: err.response?.data?.message ||
+          JSON.stringify(err.response?.data) ||
+          err.message
+  });
 }
   };
 

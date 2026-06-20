@@ -1,6 +1,7 @@
 import { useState } from "react";
 import api from "../services/api";
 import { useNavigate, Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -17,7 +18,10 @@ const Login = () => {
       });
 
       localStorage.setItem("token", res.data.token);
-
+localStorage.setItem(
+  "user",
+  JSON.stringify(res.data.user)
+);
       // IMPORTANT NOTE:
       // after login redirect to users page
       navigate("/users");
@@ -26,11 +30,13 @@ const Login = () => {
   console.log("RESPONSE:", err.response);
   console.log("DATA:", err.response?.data);
 
-  alert(
-    err.response?.data?.message ||
-    JSON.stringify(err.response?.data) ||
-    err.message
-  );
+  Swal.fire({
+    icon: "error",
+    title: "Login Failed",
+    text: err.response?.data?.message ||
+          JSON.stringify(err.response?.data) ||
+          err.message
+  });
 }
   };
 
