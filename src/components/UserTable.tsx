@@ -34,6 +34,7 @@ const UserTable = ({ users, selected, setSelected }: any) => {
 
           <tbody>
             {users.map((u: any) => (
+              console.log(users),
               <tr key={u.id}>
                 <td>
                   <input
@@ -44,7 +45,7 @@ const UserTable = ({ users, selected, setSelected }: any) => {
                 </td>
                 <td>{u.name}</td>
                 <td>{u.email}</td>
-                <td>{u.lastLogin}</td>
+                <td>{u.last_login}</td>
                 <td>{u.status}</td>
               </tr>
             ))}
@@ -55,6 +56,7 @@ const UserTable = ({ users, selected, setSelected }: any) => {
       {/* Mobile */}
       <div className="d-md-none">
         {users.map((u: any) => (
+          console.log(users),
           <div key={u.id} className="card mb-3 shadow-sm">
             <div className="card-body">
               <div className="mb-2">
@@ -74,7 +76,8 @@ const UserTable = ({ users, selected, setSelected }: any) => {
               </p>
 
               <p className="mb-1">
-                <strong>Last Login:</strong> {u.lastLogin}
+                <strong>Last Login:</strong>
+                 {u.last_login}
               </p>
 
               <p className="mb-0">
