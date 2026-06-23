@@ -3,6 +3,9 @@ import api from "../services/api";
 import { useNavigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,7 +15,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const res = await api.post("/auth/login", {
+      const res = await api.post(`${API_URL}/auth/login`, {
         email,
         password,
       });

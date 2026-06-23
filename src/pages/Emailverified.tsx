@@ -16,6 +16,9 @@ const EmailVerified = () => {
       <h2 className="text-success">
         ✅ Email Verified Successfully
       </h2>
+      <p>
+        Your account has been activated. You can now log in to your account.
+      </p>
     </div>
   );
 };

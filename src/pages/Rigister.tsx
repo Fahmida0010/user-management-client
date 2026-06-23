@@ -3,6 +3,8 @@ import api from "../services/api";
 import { useNavigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -14,7 +16,7 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      await api.post("/auth/register", {
+      await api.post(`${API_URL}/auth/register`, {
         name,
         email,
         password,
